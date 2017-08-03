@@ -4,11 +4,11 @@ const fs = require('fs');
 
 module.exports = {
   getDistPath() {
-    return path.join(__dirname, './dist');
+    return path.join(__dirname, './app');
   },
   getIndexFile() {
     return fs.readFileSync(
-      path.join(__dirname, './dist/index.html'),
+      path.join(__dirname, './app/index.html'),
       'utf8'
     );
   }
