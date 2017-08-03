@@ -30,6 +30,13 @@ export default Service.extend({
       }
     })
     .then((headers) => {
+      var cookies = new Map(document.cookie.split(';').map(function(cookieString) {
+        var parts = cookieString.split('=', 2);
+        return [parts[0], parts[1]];
+      }));
+      if (cookies.has('jwt')) {
+        headers['Authorization'] = 'Bearer ' + cookies.get('jwt');
+      }
       return request(`${get(window, '__kueUiExpress.apiURL') || config.apiURL}/${opts.url}`, {
         method: opts.method,
         data: opts.data,
